@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>$title</title>
+<meta name="description" content="Artisan ranking report">
+<meta name="author" content="Artisan Roaster Scope">
+<script src="${resources}sorttable.js" type="text/javascript"></script>
+<style type="text/css">
+body {
+    background: hsl(200, 0%, 100%);
+    color: hsl(200, 77%, 25%);
+}
+a {
+  color: hsl(200, 60%, 40%);
+}
+h1 {
+  color: hsl(201, 60%, 40%);
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: smaller;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+}
+th, td {
+    text-align: right;
+    padding: 8px;
+    white-space:nowrap;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+    border: 1px solid hsl(200, 5%, 85%);
+}
+td:nth-child(1) {
+    text-align: left;
+}
+td:nth-child(2) {
+    text-align: left;
+     width: 20%;
+     text-overflow:ellipsis;
+     overflow: hidden; 
+     max-width:1px;
+}
+td:nth-child(3) {
+    text-align: left;
+     width: 50%;
+     text-overflow:ellipsis;
+     overflow: hidden; 
+     max-width:1px;
+}
+tfoot {
+    background-color: hsl(200, 5%, 60%) !important;
+    color: white !important;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+    font-weight: bold;
+}
+.inv {
+    color: hsl(200, 40%, 25%);
+    background-color: hsl(200, 5%, 80%) !important;
+}
+th {
+    text-align: center;
+    background-color: hsl(200, 55%, 50%);
+    color: hsl(200, 0%, 100%) !important;
+    -webkit-print-color-adjust: exact;
+}
+@media screen and (prefers-color-scheme: dark) {
+  body {
+      background: hsl(200, 5%, 15%);
+      color: hsl(200, 10%, 65%);
+  }
+  a {
+    color: hsl(200, 70%, 50%);
+  }
+  h1 {
+    color: hsl(201, 80%, 65%);
+  }
+  th, td {
+      text-align: right;
+      padding: 8px;
+      white-space:nowrap;
+      -webkit-print-color-adjust: exact;
+      color-adjust: exact;
+      border: 1px solid hsl(200, 10%, 40%);
+  }
+  tfoot {
+      background-color: hsl(200, 5%, 30%) !important;
+      color: white !important;
+      -webkit-print-color-adjust: exact;
+      color-adjust: exact;
+      font-weight: bold;
+  }
+  .inv {
+      color: hsl(200, 20%, 20%);
+      background-color: hsl(200, 5%, 70%) !important;
+  }
+  th {
+      text-align: center;
+      background-color: hsl(200, 50%, 50%);
+      color: hsl(200, 0%, 95%) !important;
+      -webkit-print-color-adjust: exact;
+  }
+}
+.grey {
+  background-color: rgba(128,128,128,.10);
+}
+.lightgrey {
+  background-color: rgba(230,230,230,.50);
+}
+.darkgrey {
+  background-color: rgba(128,128,128,.30);
+}
+.red {
+  background-color: rgba(255,0,0,.05);
+}
+.darkred {
+  background-color: rgba(255,0,0,.10);
+}
+.blue {
+  background-color: rgba(0,0,255,.05);
+}
+.darkblue {
+  background-color: rgba(0,0,255,.10);
+}
+.green {
+  background-color: rgba(0,255,0,.05);
+}
+.darkgreen {
+  background-color: rgba(0,255,0,.10);
+}
+</style>
+</head>
+<body>
+<h1>$title</h1>
+<table class="sortable">
+<colgroup>
+    <col class="grey" />
+    <col span="2" />
+    <col class="grey" />
+    <col class="darkgrey" />
+    <col class="blue" />
+    <col class="darkblue" />
+    <col class="red" />
+    <col class="darkred" />
+    <col class="green" span="3" />
+    <col class="darkgreen" />
+    <col class="grey" span="3" />
+    <col class="blue" span="3" />
+</colgroup>
+<thead>
+<tr>
+<th>#</th>
+<th>$time</th>
+<th>$profile</th>
+<th>$weightin<br><small>($weight_unit)</small></th>
+<th>CHR<br><small>($temp_unit)</small></th>
+<th>FCs<br><small>(min)</small></th>
+<th>FCs<br><small>($temp_unit)</small></th>
+<th>DROP<br><small>(min)</small></th>
+<th>DROP<br><small>($temp_unit)</small></th>
+<th>DRY<br><small>(%)</small></th>
+<th>MAI<br><small>(%)</small></th>
+<th>DEV<br><small>(%)</small></th>
+<th>AUC<br><small>(C*min)</small></th>
+<th>$weightloss<br><small>(%)</small></th>
+<th>$colorHeader<br><small>&nbsp;</small></th>
+<th>Cup<br><small>&nbsp;</small></th>
+<th>Energy<br><small>(kWh)</small></th>
+<th>CO2<br><small>(g)</small></th>
+<th>CO2/kg<br><small>(g)</small></th>
+</tr>
+</thead>
+<tbody>
+$entries
+</tbody>
+<tfoot>
+<tr>
+<td class="inv">AVG</td>
+<td ></td>
+<td ></td>
+<td class="inv">${charges_avg}</td>
+<td class="inv">${charges_temp_avg}</td>
+<td class="inv">${FCs_time_avg}</td>
+<td class="inv">${FCs_temp_avg}</td>
+<td class="inv">${DROP_time_avg}</td>
+<td class="inv">${DROP_temp_avg}</td>
+<td class="inv">${DRY_percent_avg}</td>
+<td class="inv">${MAI_percent_avg}</td>
+<td class="inv">${DEV_percent_avg}</td>
+<td class="inv">${AUC_avg}</td>
+<td class="inv">${loss_avg}</td>
+<td class="inv">${colors_avg}</td>
+<td class="inv">${cup_avg}</td>
+<td class="inv">${energy_avg}</td>
+<td class="inv">${co2_avg}</td>
+<td class="inv">${co2kg_avg}</td>
+</tr>
+</tfoot>
+</table>
+<p style="text-align:center;">
+$graph_image
+</p>
+<p style="text-align:center;">
+$graph_image_pct
+</p>
+</body>
+</html>
