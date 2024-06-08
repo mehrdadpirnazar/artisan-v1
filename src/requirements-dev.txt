@@ -24,7 +24,7 @@ pytest-cov==4.1.0
 #pytest-mock==3.11.1
 hypothesis>=6.99.11
 coverage>=7.4.4
-coverage-badge==1.1.0
+coverage-badge==1.1.1
 codespell==2.2.6
 # the following 2 packages are not installed along aiohttp on Python3.12 and make mypy complain
 async_timeout==4.0.3; python_version >= '3.12'
